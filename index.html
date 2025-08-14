@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buscar invitación</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        /* Imagen de fondo */
+        background: url('https://img.freepik.com/fotos-premium/flores-gypsophila-sobre-fondo-verde-pastel-minimalismo-concepto-flor-flor-primavera-espacio-copia-vista-superior-plana_364465-1316.jpg') no-repeat center center fixed;
+        background-size: cover;
+        position: relative;
+        color: #333;
+    }
+
+    /* Capa encima del fondo para el degradado + blur */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+	rgba(200, 255, 200, 0.6),  /* verde pastel transparente */
+        rgba(255, 255, 255, 0.8)   /* blanco semitransparente */
+        );
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        z-index: -1;
+    }
+
+    h2 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+        color: #2f5d50;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    }
+
+    input {
+        padding: 12px;
+        width: 70%;
+        max-width: 260px;
+        border: 2px solid #b5d3c7;
+        border-radius: 8px;
+        font-size: 1em;
+        transition: all 0.3s ease;
+    }
+
+    input:focus {
+        border-color: #6abf9f;
+        outline: none;
+        box-shadow: 0 0 8px rgba(106, 191, 159, 0.3);
+    }
+
+    button {
+        padding: 12px 24px;
+        margin-left: 10px;
+        font-size: 1em;
+        color: white;
+        background-color: #6abf9f;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+        background-color: #57a886;
+        transform: scale(1.05);
+    }
+
+    button:active {
+        transform: scale(0.98);
+    }
+
+    .search-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        background: white;
+        padding: 10px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+    }
+</style>
+</head>
+<body>
+
+<h2>🔍 Busca tu invitación</h2>
+<div class="search-box">
+    <input type="text" id="nombre" placeholder="Escribe tu nombre">
+    <button onclick="buscar()">Buscar</button>
+</div>
+
+<script>
+function normalizarTexto(texto) {
+    return texto
+        .normalize("NFD") 
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+}
+
+function buscar() {
+    let nombre = normalizarTexto(document.getElementById("nombre").value);
+
+    let enlaces = {
+	"familia lugo garcia": "https://fanlalo.my.canva.site/familia-lugo-garc-a",
+        "familia leon lugo": "https://fanlalo.my.canva.site/familia-le-n-lugo",
+        "familia hurtado": "https://fanlalo.my.canva.site/familia-hurtado",
+        "familia morales": "https://fanlalo.my.canva.site/familia-morales",
+	"rosy lugo": "https://fanlalo.my.canva.site/rosy-lugo",
+	"david lugo": "https://fanlalo.my.canva.site/david-lugo",
+	"jesus lugo": "https://fanlalo.my.canva.site/jesus-lugo",
+	"chuy lugo": "https://fanlalo.my.canva.site/chuy-lugo",
+	"familia garcia lugo": "https://fanlalo.my.canva.site/familia-garc-a-lugo",
+	"familia amaya lugo": "https://fanlalo.my.canva.site/familia-amaya-lugo",
+	"michelle amaya": "https://fanlalo.my.canva.site/michelle-amaya",
+	"familia chavez lugo": "https://fanlalo.my.canva.site/familia-chavez-lugo",
+	"familia sandoval lugo": "https://fanlalo.my.canva.site/familia-sandoval-lugo",
+	"familia rivera lugo": "https://fanlalo.my.canva.site/familia-rivera-lugo",
+	"familia hugo lugo": "https://fanlalo.my.canva.site/familia-hugo-lugo",
+	"saul barcenas": "https://fanlalo.my.canva.site/sa-l-barcenas",
+	"vicente garcia": "https://fanlalo.my.canva.site/vicente-garc-a",
+	"luis vargas": "https://fanlalo.my.canva.site/luis-vargas",
+	"jesus vilchiz": "https://fanlalo.my.canva.site/jesus-vilchiz",
+	"ale lotina": "https://fanlalo.my.canva.site/ale-lotina",
+	"montse aragon": "https://fanlalo.my.canva.site/montse-aragon",
+	"kiki": "https://fanlalo.my.canva.site/kiki",
+	"loreana servin": "https://fanlalo.my.canva.site/loreana-servin",
+	"azucena soto": "https://fanlalo.my.canva.site/azucena-soto",
+	"aaron ramirez": "https://fanlalo.my.canva.site/aaron-ram-rez",
+	"agustin heredia": "https://fanlalo.my.canva.site/agustin-heredia",
+	"isabel avila": "https://fanlalo.my.canva.site/isabel-avila",
+	"ana Hernandez y fer ambriz": "https://fanlalo.my.canva.site/ana-hernandez-y-fer-ambriz",
+	"jazmin martinez": "https://fanlalo.my.canva.site/jazmin-martinez",
+	"helena carreon": "https://fanlalo.my.canva.site/helena-carreon",
+	"victor sanchez": "https://fanlalo.my.canva.site/victor-sanchez",
+	"ale flores": "https://fanlalo.my.canva.site/ale-flores",
+	"lupita lozano": "https://fanlalo.my.canva.site/lupita-lozano",
+	"veronica perez": "https://fanlalo.my.canva.site/veronica-perez",
+	"familia gomez": "https://fanlalo.my.canva.site/familia-gomez",
+	"familia rodriguez": "https://fanlalo.my.canva.site/familia-rodriguez",
+	"familia olay": "https://fanlalo.my.canva.site/familia-olay",
+	"familia sanchez": "https://fanlalo.my.canva.site/familia-sanchez",
+	"familia tia glo": "https://fanlalo.my.canva.site/familia-tia-glo",
+	"familia tello": "https://fanlalo.my.canva.site/familia-tello",
+	"familia sotelo": "https://fanlalo.my.canva.site/familia-sotelo",
+	"marco chavez": "https://fanlalo.my.canva.site/marco-chavez",
+	"vane mora": "https://fanlalo.my.canva.site/vane-mora",
+	"javier esparza": "https://fanlalo.my.canva.site/javier-esparza",
+	"irma gonzalez": "https://fanlalo.my.canva.site/irma-gonzalez",
+	"eri jimenez": "https://fanlalo.my.canva.site/eri-jimenez",
+	"dolores vazquez": "https://fanlalo.my.canva.site/dolores-vazquez",
+	"fer lezama": "https://fanlalo.my.canva.site/fer-lezama",
+	"familia rafa": "https://fanlalo.my.canva.site/familia-rafa",
+	"familia javier": "https://fanlalo.my.canva.site/familia-javier",
+	"chris": "https://fanlalo.my.canva.site/chris",
+	"diego": "https://fanlalo.my.canva.site/diego",
+	"gadiel": "https://fanlalo.my.canva.site/gadiel",
+	"carlos arellano": "https://fanlalo.my.canva.site/carlos-arellano",
+	"familia gomez ledezma": "https://fanlalo.my.canva.site/familia-gomez-ledezma",
+	"diego gomez": "https://fanlalo.my.canva.site/diego-gomez",
+	"alan gomez": "https://fanlalo.my.canva.site/alan-gomez",
+	"denisse gomez": "https://fanlalo.my.canva.site/denisse-gomez",
+	"christian gomez": "https://fanlalo.my.canva.site/christian-gomez",
+	"esteban gomez": "https://fanlalo.my.canva.site/esteban-gomez",
+	"fany gomez": "https://fanlalo.my.canva.site/fany-gomez",
+	"diana gomez": "https://fanlalo.my.canva.site/diana-gomez",
+	"ale gomez": "https://fanlalo.my.canva.site/ale-gomez",
+	"ana juarez": "https://fanlalo.my.canva.site/ana-juarez",
+	"mariana rodriguez": "https://fanlalo.my.canva.site/mariana-rodriguez",
+	"rosita rodriguez": "https://fanlalo.my.canva.site/rosita-rodriguez",
+	"dilan rodriguez": "https://fanlalo.my.canva.site/dilan-rodriguez",
+	"erik ramirez": "https://fanlalo.my.canva.site/erik-ramirez",
+	"david ventura": "https://fanlalo.my.canva.site/david-ventura",
+	"luis daniel leo": "https://fanlalo.my.canva.site/luis-daniel-leo",
+	"carlos fernando ramirez": "https://fanlalo.my.canva.site/carlos-fernando-ramirez",
+        "rodrigo ordoñes": "https://fanlalo.my.canva.site/rodrigo-ordo-es",
+        "vane valadez": "https://fanlalo.my.canva.site/vane-valadez",
+        "leo cruz": "https://fanlalo.my.canva.site/leo-cruz",
+        "jesus saenz": "https://fanlalo.my.canva.site/jesus-saenz",
+        "familia valdez": "https://fanlalo.my.canva.site/familia-valdez"
+
+    };
+
+    if (enlaces[nombre]) {
+        window.location.href = enlaces[nombre];
+    } else {
+        alert("❌ No encontramos tu invitación. Revisa que tu nombre esté bien escrito.");
+    }
+}
+</script>
+
+</body>
+</html>
